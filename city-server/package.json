@@ -1,0 +1,15 @@
+{
+  "name": "idcloud-mock",
+  "version": "1.0.0",
+  "description": "City-server",
+  "author": "Enrique RAmos <enriqueramosmunoz@gmail.com>",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "express": "^4.16.4"
+  }
+}
