@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     }
   }
   getUserByEmail(email){
-    let url = "http://localhost:3000/api/user/email/" + email
+    let url = "http://88.7.71.88:3379/api/user/email/" + email
     this.http.get(url).subscribe( data => {
       if(Object.keys(data).length == 1){
         this.name = data[0].name
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
     })
   }
   getUserByDni(dni){
-    let url = "http://localhost:3000/api/user/dni/" + dni
+    let url = "http://88.7.71.88:3379/api/user/dni/" + dni
     this.http.get(url).subscribe( data =>
     {
       if(Object.keys(data).length == 1){
@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
     })
   }
   newUser(){
-    let url = "http://localhost:3000/api/new/user/"
+    let url = "http://88.7.71.88:3379/api/new/user/"
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     let body = new HttpParams()
     .set('name', this.name)
@@ -130,7 +130,7 @@ export class HomeComponent implements OnInit {
     this.setData()
   }
   updateUser(id){
-    let url = "http://localhost:3000/api/update/user/" + id
+    let url = "http://88.7.71.88:3379/api/update/user/" + id
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     let body = new HttpParams()
     .set('_id', id)
