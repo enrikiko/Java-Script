@@ -1,5 +1,5 @@
 url="http://88.7.71.88:3377"
-device="testFP"
+device=$1
 echo
 echo "Create New Device"
 curl -X GET $url"/device/new/"$device"/Status/Description"
