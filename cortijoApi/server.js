@@ -2,6 +2,7 @@ const express = require("express");
 const myDevice = require('./users');
 const cors = require('cors');
 const fs = require('fs');
+var io = require('socket.io');
 const app = express();
 app.use(cors());
 app.options('*', cors());
@@ -28,15 +29,22 @@ var errorJson = {
 var successfullyJson = {
   text: 'users loaded successfully'
 }
-
+function functionName() {
+  io.emit('chat message', 'Hello World');
+}
 //Get log
 app.get("/device/log", function(req, res) { //OK
   log("--- Log Sent ---")
+  functionName()
   try{
     var response = readLog();
     res.status(200).send(response)
   }catch(response){}
   })
+
+app.get('/log', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 
 //Get all device
 app.get("/device/all", async function(req, res) { //OK

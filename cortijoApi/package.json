@@ -10,7 +10,8 @@
     "body-parser": "*",
     "cors": "^2.8.4",
     "express": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "socket.io": "^1.7.3"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
