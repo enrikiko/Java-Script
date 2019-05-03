@@ -2,13 +2,16 @@ const express = require("express");
 const myDevice = require('./users');
 const cors = require('cors');
 const fs = require('fs');
-var io = require('socket.io');
 const app = express();
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded()) // middleware Bodyparse
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+const { exec } = require('child_process');
 //
 function log(text) {
+  io.emit('chat message', text);
   console.log(text);
   text=Date()+"\n"+text+"\n\n"
   fs.appendFile("log.txt", text, function(err) {
@@ -29,21 +32,39 @@ var errorJson = {
 var successfullyJson = {
   text: 'users loaded successfully'
 }
-function functionName() {
-  io.emit('chat message', 'Hello World');
+
+
+
+function execute(msg) {
+  log(msg)
+  exec(msg, (err, stdout) => {
+    if (err) {
+      log(err)
+    }
+    if (stdout) {
+      log(stdout);
+    }
+  });
 }
+
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    //execute(msg);
+  });
+});
+
 //Get log
 app.get("/device/log", function(req, res) { //OK
   log("--- Log Sent ---")
-  functionName()
   try{
     var response = readLog();
     res.status(200).send(response)
   }catch(response){}
   })
 
-app.get('/log', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+app.get('/terminal', function(req, res){
+  res.sendFile(__dirname + '/terminal.html');
 });
 
 //Get all device
@@ -115,8 +136,10 @@ app.get("/device/update/:name/:status", async function(req, res){
     res.status(200).json({"Previous Status": lastStatus, "New Status": newStatus})
   }catch(response){}
   })
-
+app.get('/*', function(req, res){
+  res.sendFile(__dirname + '/info.html');
+});
 // activate the listenner
-app.listen(3000, function () {
+http.listen(3000, function () {
     log('Servidor activo en http://localhost:3000');
   })
