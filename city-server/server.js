@@ -46,6 +46,11 @@ app.get('/attachment', function(req, res) {
   res.attachment(__dirname + "/templates/download.txt")
 })
 
+app.post('/*', function (req, res) {
+     console.log(req.body);
+     res.status(200).send(basicHtml)
+})
+
 app.listen(port, function() {
   console.log("City server running on: %s",port);
 })
