@@ -1,0 +1,22 @@
+{
+  "name": "websocker",
+  "version": "1.0.0",
+  "description": "Web socker example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enrikiko/Java-Script.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enrikiko/Java-Script/issues"
+  },
+  "homepage": "https://github.com/enrikiko/Java-Script#readme",
+  "dependencies": {
+    "ws": "^6.2.1"
+  }
+}

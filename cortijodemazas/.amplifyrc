@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "cortijodemazas-20190113183303-authRole",
+            "UnauthRoleArn": "arn:aws:iam::695200269817:role/cortijodemazas-20190113183303-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::695200269817:role/cortijodemazas-20190113183303-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "cortijodemazas-20190113183303-deployment",
+            "UnauthRoleName": "cortijodemazas-20190113183303-unauthRole",
+            "StackName": "cortijodemazas-20190113183303",
+            "StackId": "arn:aws:cloudformation:eu-central-1:695200269817:stack/cortijodemazas-20190113183303/482fc850-1759-11e9-a70e-06aac4edf424"
+        }
+    }
+}

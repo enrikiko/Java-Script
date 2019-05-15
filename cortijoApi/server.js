@@ -2,7 +2,10 @@ const express = require("express");
 const myDevice = require('./users');
 const cors = require('cors');
 const fs = require('fs');
+const bodyParser = require('body-parser')
 const app = express();
+app.enable('trust proxy')
+app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded()) // middleware Bodyparse
@@ -61,6 +64,14 @@ app.get("/device/log", function(req, res) { //OK
     var response = readLog();
     res.status(200).send(response)
   }catch(response){}
+  })
+
+app.post("/*", function(req, res) { //OK
+  log(req.get('host')+req.originalUrl)
+  log(req.protocol)
+  log(JSON.stringify(req.body))
+  log(req.ip)
+  res.status(200).send('ok')
   })
 
 app.get('/terminal', function(req, res){
