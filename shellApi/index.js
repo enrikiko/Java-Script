@@ -28,7 +28,7 @@ app.get("/", function(req, res, next) { //OK
   var request={}
   request.url=req.get('host')+req.originalUrl
   request.body=JSON.stringify(req.body)
-  request.ip=req.i
+  request.ip=req.ip
   console.log(JSON.stringify(request));
   })
 
