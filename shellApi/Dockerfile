@@ -7,7 +7,7 @@ RUN git clone https://github.com/enrikiko/Java-Script
 WORKDIR /root/shell/Java-Script/shellApi
 RUN git pull
 RUN npm install
-ENTRYPOINT ['init.sh']
+ENTRYPOINT ["sh", "init.sh"]
 # COPY . .
 # WORKDIR /usr/src/app/vue
 # RUN npm install
