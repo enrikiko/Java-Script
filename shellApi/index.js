@@ -1,5 +1,5 @@
 const express = require("express");
-const myDevice = require('./users');
+//const myDevice = require('./users');
 const cors = require('cors');
 const fs = require('fs');
 const bodyParser = require('body-parser')
