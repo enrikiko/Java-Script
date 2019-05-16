@@ -7,7 +7,7 @@ RUN git clone https://github.com/enrikiko/Java-Script
 WORKDIR /root/shell/Java-Script/shellApi
 RUN git pull
 RUN npm install
-#ENTRYPOINT ['node', 'index.js']
+CMD node index.js
 # COPY . .
 # WORKDIR /usr/src/app/vue
 # RUN npm install
