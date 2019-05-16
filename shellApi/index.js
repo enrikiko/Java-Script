@@ -13,11 +13,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const { exec } = require('child_process');
 
-app.post("/", function(req, res, next) { //OK
+app.post("/*", function(req, res, next) { //OK
   var request={}
   request.url=req.get('host')+req.originalUrl
   request.body=JSON.stringify(req.body)
   request.ip=req.ip
+  request.header=req.header
   console.log(request);
   req.info=request
   next()
@@ -27,11 +28,12 @@ app.post('/*', function(req, res){
 });
 
 
-app.get("/", function(req, res, next) {
+app.get("/*", function(req, res, next) {
   var request={}
   request.url=req.get('host')+req.originalUrl
   request.body=JSON.stringify(req.body)
   request.ip=req.ip
+  request.header=req.header
   console.log(request);
   req.info=request
   next()
