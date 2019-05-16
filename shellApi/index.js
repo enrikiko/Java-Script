@@ -17,23 +17,28 @@ app.post("/", function(req, res, next) { //OK
   var request={}
   request.url=req.get('host')+req.originalUrl
   request.body=JSON.stringify(req.body)
-  request.ip=req.i
-  console.log(JSON.stringify(request));
+  request.ip=req.ip
+  console.log(request);
+  req.info=request
+  next()
   })
 app.post('/*', function(req, res){
-  res.status(200).json(request)
+  res.status(200).json(req.info)
 });
 
-app.get("/", function(req, res, next) { //OK
+
+app.get("/", function(req, res, next) {
   var request={}
   request.url=req.get('host')+req.originalUrl
   request.body=JSON.stringify(req.body)
   request.ip=req.ip
-  console.log(JSON.stringify(request));
+  console.log(request);
+  req.info=request
+  next()
   })
 
 app.get('/*', function(req, res){
-  res.status(200).json(request)
+  res.status(200).json(req.info)
 });
 
 http.listen(3000, function () {
