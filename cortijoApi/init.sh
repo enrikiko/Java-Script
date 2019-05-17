@@ -1,1 +1,1 @@
-node server.js
+mongod & node server.js
