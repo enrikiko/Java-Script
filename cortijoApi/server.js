@@ -1,3 +1,10 @@
+const { exec } = require('child_process');
+// exec("mongod",async (err, stdout) => {
+//   if (err) {
+//     log(err)
+//   }
+//   await stdout
+// })
 const express = require("express");
 const myDevice = require('./users');
 const cors = require('cors');
@@ -8,10 +15,9 @@ app.enable('trust proxy')
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
-app.use(express.urlencoded()) // middleware Bodyparse
+//app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-const { exec } = require('child_process');
 //
 function log(text) {
   io.emit('chat message', text);

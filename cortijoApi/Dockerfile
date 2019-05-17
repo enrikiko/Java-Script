@@ -5,4 +5,4 @@ COPY . .
 RUN apt-get update
 RUN apt update
 RUN npm install
-ENTRYPOINT ['sh', 'init.sh']
+#ENTRYPOINT ['sh', 'init.sh']
