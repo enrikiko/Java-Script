@@ -10,8 +10,8 @@ app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-const { exec } = require('child_process');
+//var io = require('socket.io')(http);
+//const { exec } = require('child_process');
 
 app.post("/*", function(req, res, next) { //OK
   var request={}

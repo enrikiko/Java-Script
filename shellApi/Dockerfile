@@ -2,10 +2,9 @@ FROM node:8
 RUN mkdir shell
 WORKDIR /root/shell
 RUN apt update
-RUN apt install git
-RUN git clone https://github.com/enrikiko/Java-Script
-WORKDIR /root/shell/Java-Script/shellApi
-RUN git pull
+COPY index.js ./
+COPY package.json ./
+COPY init.sh ./
 RUN npm install
 ENTRYPOINT ["sh", "init.sh"]
 # COPY . .
