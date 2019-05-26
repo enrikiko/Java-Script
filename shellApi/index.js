@@ -5,9 +5,9 @@ const fs = require('fs');
 //const bodyParser = require('body-parser')
 const app = express();
 app.enable('trust proxy')
-app.use(bodyParser.json());
-app.use(cors());
-app.options('*', cors());
+//app.use(bodyParser.json());
+//app.use(cors());
+//app.options('*', cors());
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
