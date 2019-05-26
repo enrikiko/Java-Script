@@ -1,1 +1,1 @@
-mongod & node server.js
+mongod & sh init2.sh
