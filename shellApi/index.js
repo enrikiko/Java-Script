@@ -1,8 +1,8 @@
 const express = require("express");
 //const myDevice = require('./users');
-const cors = require('cors');
+//const cors = require('cors');
 const fs = require('fs');
-const bodyParser = require('body-parser')
+//const bodyParser = require('body-parser')
 const app = express();
 app.enable('trust proxy')
 app.use(bodyParser.json());
