@@ -1,10 +1,4 @@
 const { exec } = require('child_process');
-// exec("mongod",async (err, stdout) => {
-//   if (err) {
-//     log(err)
-//   }
-//   await stdout
-// })
 const express = require("express");
 const myDevice = require('./users');
 const cors = require('cors');
@@ -18,7 +12,12 @@ app.options('*', cors());
 //app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-//
+
+function switchStatus(ip, status) {
+  console.log("IP:", ip)
+  console.log("STATUS:", status)
+}
+
 function log(text) {
   io.emit('chat message', text);
   console.log(text);
@@ -42,8 +41,6 @@ var successfullyJson = {
   text: 'users loaded successfully'
 }
 
-
-
 function execute(msg) {
   log(msg)
   exec(msg, (err, stdout) => {
@@ -55,7 +52,6 @@ function execute(msg) {
     }
   });
 }
-
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
@@ -117,7 +113,6 @@ app.get("/device/remove/:name", async function(req, res) { //OK
       log(name+" Doesn't Exist");
       res.status(200).json("Device Doesn't Exist")
     }
-
   }catch(response){}
   })
 
@@ -143,13 +138,17 @@ app.get("/device/new/:name/:status/:description", async function(req, res){
 //update user
 app.get("/device/update/:name/:status", async function(req, res){
   try{
+
     var name = req.params.name
     var status = req.params.status
+
     log("Change status of "+name+" to "+status);
     var id = await myDevice.getIdbyName(name)
+    var ip = await myDevice.getIpbyName(name)
     var lastStatus = await myDevice.updateDevice(id, status)
     var newStatus = await myDevice.getDeviceById(id)
     log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
+    switchStatus(ip, newStatus)
     res.status(200).json({"Previous Status": lastStatus, "New Status": newStatus})
   }catch(response){}
   })

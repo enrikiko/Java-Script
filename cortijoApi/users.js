@@ -61,6 +61,19 @@ module.exports = {
        return null
      }
    },
+   getIpbyName: async function(Name){
+     async function getList(Name){
+        return myDevice.find({name: Name})
+     }
+     var list = await getList(Name)
+     if (list.length > 0) {
+       var device = list[0]
+       var ip = device.description
+       return ip
+     }else {
+       return null
+     }
+   },
    updateDevice: (Id, Status) => {
     return myDevice.findById(Id, function(err, result) {
        if (err) throw err
