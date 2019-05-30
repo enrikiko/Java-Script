@@ -4,4 +4,4 @@ RUN apt install curl -y
 WORKDIR /usr/src/app
 COPY scs/. .
 RUN npm install
-ENTRYPOINT ["sh", "init.sh"]
+#ENTRYPOINT ["sh", "init.sh"]
