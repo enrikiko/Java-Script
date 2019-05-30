@@ -1,1 +1,2 @@
-sh request.sh && node index.js
+node index.js
+#sh request.sh && 
