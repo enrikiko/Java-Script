@@ -6,20 +6,25 @@
       const url=window.location.href
       location.href=url+post;
     }
+    function getA() {
+      return "SSSSS";
+    }
     </script>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-    <!-- <script>getURL("Hello world")</script> -->
-    <ul>
-      <li><a onclick=getURL("terminal") >terminal</a></li>
-      <li><a onclick=getURL("device/log") >log</a></li>
-      <li><a onclick=getURL("device/all") >allDevices</a></li>
-      <li><a onclick=getURL("device/name/testName") >GetDevice:testName</a></li>
-      <li><a onclick=getURL("device/new/testName/testStatus/testDescription") >NewDecive:testName</a></li>
-      <li><a onclick=getURL("device/update/testName/newTestStatus") >SetStatus:status</a></li>
-      <li><a onclick=getURL("device/remove/testName") >Remove:testName</a></li>
-    </ul>
+    <div style="margin-left: 100px; margin-top: 50px">
+    <h1>URL</h1>
+      <div style="margin-left: 50px; margin-top: 50px">
+        <h2><a onclick=getURL("terminal") >terminal</a></h2>
+        <h2><a onclick=getURL("device/log") >device/log</a></h2>
+        <h2><a onclick=getURL("device/all") >device/all</a></h2>
+        <h2><a onclick=getURL("device/name/testName") >device/name/testName</a></h2>
+        <h2><a onclick=getURL("device/new/testName/testStatus/testDescription") >device/new/testName/testStatus/testDescription</a></h2>
+        <h2><a onclick=getURL("device/update/testName/newTestStatus") >device/update/testName/newTestStatus</a></h2>
+        <h2><a onclick=getURL("device/remove/testName") >device/remove/testName</a></h2>
+      </div>
+    </div>
   </body>
 </html>

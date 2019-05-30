@@ -31,9 +31,13 @@ const deviceSchema = mongoose.Schema({
 let myDevice = mongoose.model('User', deviceSchema);
 
 module.exports = {
+
    getDevice: () => { return myDevice.find() },
+
    getDeviceByName: (Name) => { return myDevice.find({name: Name})},
+
    getDeviceById: (id) => { return myDevice.findById(id)},
+
    newDevice: (Name, Status, Description) => {
      let device = new myDevice(
        {
@@ -48,6 +52,7 @@ module.exports = {
        }
      });
    },
+
    getIdbyName: async function(Name){
      async function getList(Name){
         return myDevice.find({name: Name})
@@ -61,6 +66,7 @@ module.exports = {
        return null
      }
    },
+
    getIpbyName: async function(Name){
      async function getList(Name){
         return myDevice.find({name: Name})
@@ -74,6 +80,7 @@ module.exports = {
        return null
      }
    },
+
    updateDevice: (Id, Status) => {
     return myDevice.findById(Id, function(err, result) {
        if (err) throw err
@@ -84,6 +91,7 @@ module.exports = {
        }
      });
    },
+
    removeDeviceByName: (Name) => {
     return myDevice.remove({name: Name}, function(err, result) {
       if (err) throw err
@@ -92,4 +100,5 @@ module.exports = {
         }
       });
     }
+
 }

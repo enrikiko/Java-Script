@@ -10,19 +10,18 @@ app.enable('trust proxy')
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
-//app.use(express.urlencoded()) // middleware Bodyparse
+app.use(express.urlencoded())
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 function switchStatus(ip, status) {
-  request("http://"+ip+"/status/"+status, (err, res, body) => {
-  if (err) { return console.log(err); }
-  log(res);
-  log(body.url);
-  log(body.explanation);
-});
   log("IP:", ip)
   log("STATUS:", status)
+  request("http://"+ip+"/status/"+status, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+  });
 }
 
 function log(text) {
