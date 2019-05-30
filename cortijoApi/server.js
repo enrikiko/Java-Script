@@ -1,4 +1,5 @@
 const { exec } = require('child_process');
+const request = require('request');
 const express = require("express");
 const myDevice = require('./users');
 const cors = require('cors');
@@ -14,6 +15,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 function switchStatus(ip, status) {
+  request(ip+"/status/"+status, (err, res, body) => {
+  if (err) { return console.log(err); }
+  console.log(res);
+  console.log(body.url);
+  console.log(body.explanation);
+});
   console.log("IP:", ip)
   console.log("STATUS:", status)
 }
