@@ -1,5 +1,4 @@
 const { exec } = require('child_process');
-const request = require('request');
 const express = require("express");
 const myDevice = require('./users');
 const joker = require('./joker');
@@ -28,9 +27,7 @@ function log(text) {
  });
 }
 //
-function readLog() {
-   return fs.readFileSync("log.txt", {encoding: 'ASCII'})
-}
+
 //
 var errorJson = {
   error: "Not Found",
@@ -40,17 +37,7 @@ var successfullyJson = {
   text: 'users loaded successfully'
 }
 
-function execute(msg) {
-  log(msg)
-  exec(msg, (err, stdout) => {
-    if (err) {
-      log(err)
-    }
-    if (stdout) {
-      log(stdout);
-    }
-  });
-}
+
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
@@ -126,10 +113,10 @@ app.get("/device/new/:name/:status/:description", async function(req, res){
     if (!id) {
       var response = await myDevice.newDevice(name, status, description)
       log(name+' create successfully');
-      res.status(201).json(name+' create successfully')
+      res.status(200).json(name+' create successfully')
     }else {
-      log(name+' already exist');
-      res.status(200).json(name+' already exist')
+      var lastDescription = await myDevice.updateDeviceIp(id, description)
+      res.status(200).json({"Previous Ip": lastDescription, "New Ip": description})
     }
   }catch(response){}
   })
@@ -147,13 +134,15 @@ app.get("/device/update/:name/:status", async function(req, res){
     var lastStatus = await myDevice.updateDevice(id, status)
     var newStatus = await myDevice.getDeviceById(id)
     log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
-    joker.switchStatus(ip, newStatus)
+    joker.switchStatus(ip, status)
     res.status(200).json({"Previous Status": lastStatus, "New Status": newStatus})
   }catch(response){}
   })
+
 app.get('/*', function(req, res){
   res.sendFile(__dirname + '/info.html');
 });
+
 // activate the listenner
 http.listen(3000, function () {
     log('Servidor activo en http://localhost:3000');

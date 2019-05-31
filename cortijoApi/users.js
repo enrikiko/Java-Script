@@ -91,6 +91,17 @@ module.exports = {
        }
      });
    },
+   
+   updateDeviceIp: (Id, Ip) => {
+    return myDevice.findById(Id, function(err, result) {
+       if (err) throw err
+       if(result){
+         result.description = Ip
+         result.save()
+         console.log(result)
+       }
+     });
+   },
 
    removeDeviceByName: (Name) => {
     return myDevice.remove({name: Name}, function(err, result) {
