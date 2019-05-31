@@ -2,6 +2,7 @@ const { exec } = require('child_process');
 const request = require('request');
 const express = require("express");
 const myDevice = require('./users');
+const joker = require('./joker');
 const cors = require('cors');
 const fs = require('fs');
 const bodyParser = require('body-parser')
@@ -14,15 +15,7 @@ app.use(express.urlencoded())
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-function switchStatus(ip, status) {
-  log("IP:", ip)
-  log("STATUS:", status)
-  request("http://"+ip+"/status/"+status, (err, res, body) => {
-    if (err) {
-      return console.log(err);
-    }
-  });
-}
+
 
 function log(text) {
   io.emit('chat message', text);
@@ -154,7 +147,7 @@ app.get("/device/update/:name/:status", async function(req, res){
     var lastStatus = await myDevice.updateDevice(id, status)
     var newStatus = await myDevice.getDeviceById(id)
     log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
-    switchStatus(ip, newStatus)
+    joker.switchStatus(ip, newStatus)
     res.status(200).json({"Previous Status": lastStatus, "New Status": newStatus})
   }catch(response){}
   })
