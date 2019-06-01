@@ -7,12 +7,12 @@ module.exports={
        console.log("IP:", ip)
        console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
-       request("http://"+ip+"/"+status, (err, res, body) => {
+        return request("http://"+ip+"/"+status, (err, res, body) => {
          if (err) {
            console.log(err);
            return err
          } else if(res){
-           console.log(res);
+           //console.log(res);
            return res
          }
        });
