@@ -1,4 +1,5 @@
 const request = require('request');
+const fs = require('fs');
 
 module.exports={
 
@@ -26,6 +27,24 @@ module.exports={
          }
        });
      },
+    log: (text) => {
+       //io.emit('chat message', text);
+       console.log(text);
+       text=Date()+"\n"+text+"\n\n"
+       fs.appendFile("log.txt", text, function(err) {
+          if(err) {
+              console.log(err);
+             }
+      });
+    },
+    getStatus: (status) => {
+      var status;
+      if (status == "on"){ status = true}
+      else if (status == "off"){status = false}
+      else{ status = null }
+      return status;
+    }
+
 
 
 }

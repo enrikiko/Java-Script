@@ -3,11 +3,8 @@
   <head>
     <script>
     function getURL(post) {
-      const url=window.location.href
-      location.href=url+post;
-    }
-    function getA() {
-      return "SSSSS";
+      const url=window.location.href.split("/")[2]
+      location.href="http://"+url+"/"+post;
     }
     </script>
     <meta charset="utf-8">
@@ -18,12 +15,12 @@
     <h1>URL</h1>
       <div style="margin-left: 50px; margin-top: 50px">
         <h2><a onclick=getURL("terminal") >terminal</a></h2>
-        <h2><a onclick=getURL("device/log") >device/log</a></h2>
-        <h2><a onclick=getURL("device/all") >device/all</a></h2>
-        <h2><a onclick=getURL("device/name/testName") >device/name/testName</a></h2>
-        <h2><a onclick=getURL("device/new/testName/testStatus/testDescription") >device/new/testName/testStatus/testDescription</a></h2>
-        <h2><a onclick=getURL("device/update/testName/newTestStatus") >device/update/testName/newTestStatus</a></h2>
-        <h2><a onclick=getURL("device/remove/testName") >device/remove/testName</a></h2>
+        <h2><a onclick=getURL("log") >log</a></h2>
+        <h2><a onclick=getURL("all") >all</a></h2>
+        <h2><a onclick=getURL("name/testName") >name/testName</a></h2>
+        <h2><a onclick=getURL("new/testName/testStatus/testDescription") >new/testName/testStatus/testDescription</a></h2>
+        <h2><a onclick=getURL("update/testName/newTestStatus") >update/testName/newTestStatus</a></h2>
+        <h2><a onclick=getURL("remove/testName") >remove/testName</a></h2>
       </div>
     </div>
   </body>
