@@ -8,7 +8,7 @@ module.exports={
        console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status) {
-         return request("http://"+ip+"/"+status, (err, res, body) => {
+         return await request("http://"+ip+"/"+status, (err, res, body) => {
            if (err) {
              console.log(err);
              return err

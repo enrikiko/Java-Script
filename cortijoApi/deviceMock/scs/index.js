@@ -26,11 +26,13 @@ app.get("/*", function(req, res, next) {
 app.get('/status/true', function(req, res){
   info={}
   info.status=true
+  console.log(info);
   res.status(200).json(info)
 });
 app.get('/status/false', function(req, res){
   info={}
   info.status=false
+  console.log(info);
   res.status(200).json(info)
 });
 
