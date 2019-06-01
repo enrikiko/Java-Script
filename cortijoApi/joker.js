@@ -3,13 +3,17 @@ const fs = require('fs');
 
 module.exports={
 
-     switchStatus: (ip, status) => {
+     switchStatus: async (ip, status) => {
        console.log("IP:", ip)
        console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
        request("http://"+ip+"/"+status, (err, res, body) => {
          if (err) {
-           return console.log(err);
+           console.log(err);
+           return err
+         } else if(res){
+           console.log(res);
+           return res
          }
        });
      },

@@ -1,5 +1,5 @@
 n=0
-for run in {1..30}
+for run in {1..5}
 do
   name="fp-"$run
   sh fp.sh $name
