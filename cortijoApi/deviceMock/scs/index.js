@@ -17,9 +17,20 @@ app.get("/*", function(req, res, next) {
   next()
   })
 
-app.get('/status/:status', function(req, res){
+// app.get('/status/:status', function(req, res){
+//   info={}
+//   info.status=req.params.status
+//   res.status(200).json(info)
+// });
+
+app.get('/status/true', function(req, res){
   info={}
-  info.status=req.params.status
+  info.status=true
+  res.status(200).json(info)
+});
+app.get('/status/false', function(req, res){
+  info={}
+  info.status=false
   res.status(200).json(info)
 });
 
