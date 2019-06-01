@@ -7,19 +7,20 @@ module.exports={
        console.log("IP:", ip)
        console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
-       var certain = "certain"
-       var response = await request("http://"+ip+"/"+status, (err, res, body) => {
-         if (err) {
-           console.log(err);
-           return err
-         } else if(res){
-           //console.log(res);
-           certain=res
-           return res
-         }
-       });
-       console.log("response: " + response)
-       console.log("certain: " + certain);
+       async function getResponse(ip, status) {
+         return request("http://"+ip+"/"+status, (err, res, body) => {
+           if (err) {
+             console.log(err);
+             return err
+           } else if(res){
+             //console.log(res);
+             return res
+           }
+         });
+       }
+       let certain = await getResponse(ip, status)
+       console.log("certain: ");
+       console.log(certain);
        return response;
      },
     readLog: () => {

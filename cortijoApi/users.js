@@ -53,7 +53,7 @@ module.exports = {
      });
    },
 
-   getIdbyName: async function(deviceNane){
+   getIdbyName: async (deviceNane) => {
      async function getList(name){
         return myDevice.find({name: name})
      }
