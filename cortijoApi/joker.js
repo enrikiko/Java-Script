@@ -11,9 +11,9 @@ module.exports={
          if (err) {
            console.log(err);
            return err
-         } else if(res){
+         } else if(body){
            //console.log(res);
-           return res
+           return body
          }
        });
      },
