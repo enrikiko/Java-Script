@@ -7,7 +7,7 @@ module.exports={
        console.log("IP:", ip)
        console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
-       request("http://"+ip+"/"+status, (err, res, body) => {
+       var response = request("http://"+ip+"/"+status, (err, res, body) => {
          if (err) {
            console.log(err);
            return err
@@ -16,6 +16,8 @@ module.exports={
            return res
          }
        });
+       console.log(response)
+       return response;
      },
     readLog: () => {
         return fs.readFileSync("log.txt", {encoding: 'ASCII'})
