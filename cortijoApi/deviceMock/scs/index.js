@@ -4,7 +4,7 @@ const app = express();
 app.enable('trust proxy')
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
-var status;
+var status = true;
 
 
 app.get("/*", function(req, res, next) {
