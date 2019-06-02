@@ -4,6 +4,7 @@ const app = express();
 app.enable('trust proxy')
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
+var status;
 
 
 app.get("/*", function(req, res, next) {
@@ -27,11 +28,19 @@ app.get('/status/true', function(req, res){
   info={}
   info.status=true
   console.log(info);
+  status=true;
   res.status(200).json(info)
 });
 app.get('/status/false', function(req, res){
   info={}
   info.status=false
+  console.log(info);
+  status=false;
+  res.status(200).json(info)
+});
+app.get('/info', function(req, res){
+  info={}
+  info.status=status
   console.log(info);
   res.status(200).json(info)
 });

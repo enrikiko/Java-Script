@@ -12,6 +12,10 @@ module.exports={
          res.body = response.body
          return res;
        }
+       function timeout(time) {
+         setTimeout( function(){ return null }, time)
+       }
+       timeout(5000);
        return await getResponse(ip, status);
      },
 
