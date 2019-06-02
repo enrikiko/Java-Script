@@ -7,11 +7,12 @@ module.exports={
        console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status, ) {
          let response = await request.get("http://"+ip+"/status/"+status);
-         console.log(response);
-         console.log(response.text);
+         res = {};
+         res.code = response.statusCode;
+         res.body = response.body
+         return res;
        }
-       let certain = await getResponse(ip, status)
-
+       return await getResponse(ip, status);
      },
 
     readLog: () => {
