@@ -6,10 +6,11 @@ module.exports={
      switchStatus: async (ip, status) => {
        console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status, ) {
-         return await request.get("http://"+ip+"/status/"+status);
+         let response = await request.get("http://"+ip+"/status/"+status);
+         console.log(certain);
        }
        let certain = await getResponse(ip, status)
-       console.log(certain);
+
      },
 
     readLog: () => {
@@ -27,7 +28,7 @@ module.exports={
          }
        });
      },
-     
+
     log: (text) => {
        //io.emit('chat message', text);
        console.log(text);
