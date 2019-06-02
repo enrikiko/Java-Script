@@ -7,7 +7,7 @@ module.exports={
        console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status, ) {
          let response = await request.get("http://"+ip+"/status/"+status);
-         console.log(certain);
+         console.log(response);
        }
        let certain = await getResponse(ip, status)
 
