@@ -7,7 +7,6 @@
 #include <ESP8266mDNS.h>
 
 
-
 const char *ssid = "<ssid>";
 const char *password = "<password>";
 String deviceName = "Device-1";
@@ -15,6 +14,7 @@ int port = 80;
 IPAddress ipDevice(10, 0, 0, 200);
 IPAddress gateway(10, 0, 0, 138);
 IPAddress subnet(255, 255, 255, 0);
+boolean certain;
 
 
 ESP8266WiFiMulti WiFiMulti;
@@ -52,8 +52,9 @@ void setup() {
     Serial.println("MDNS responder started");
   }
 
-  server.on("/true", handleRootOn);
-  server.on("/false", handleRootOff);
+  server.on("/status/true", handleRootOn);
+  server.on("/status/false", handleRootOff);
+  server.on("/info", handleInfo);
 
 //  server.on("/inline", []() {
 //    server.send(200, "text/plain", "this works as well");
@@ -113,14 +114,24 @@ void setIp(String ip){
   }
 }
 
+void handleInfo() {
+  String state;
+  Serial.print(digitalRead(LED_BUILTIN));
+  if(certain){state="true";}
+  else{state="false";};
+  server.send(200, "application/json", "{\"status\": " + state + "}");
+}
+
 void handleRootOn() {
+  certain=true;
   light(true);
-  server.send(200, "application/json", "{\"Status\": true}");
+  server.send(200, "application/json", "{\"status\": true}");
 }
 
 void handleRootOff() {
+  certain=false;
   light(false);
-  server.send(200, "application/json", "{\"Status\": false}");
+  server.send(200, "application/json", "{\"status\": false}");
 }
 
 void handleNotFound() {
