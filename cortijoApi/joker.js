@@ -12,7 +12,7 @@ module.exports={
          res.body = response.body
          return res;
        }
-       function timeout(time) {
+       async function timeout(time) {
          return await setTimeout( function(){ return null }, time)
        }
        return timeout(5000);
