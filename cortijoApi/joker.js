@@ -8,9 +8,10 @@ module.exports={
        console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
        function sendRes(val) {
+         console.log(val);
          return val;
        }
-       await request("http://"+ip+"/"+status, (err, res, body) => {
+       await request("http://"+ip+"/status/"+status, (err, res, body) => {
           if (err) {
              sendRes(err);
            } else if(res){
