@@ -1,4 +1,4 @@
-const request = require('request');
+const request = require('superagent');
 const fs = require('fs');
 
 module.exports={
@@ -8,6 +8,7 @@ module.exports={
        async function getResponse(ip, status, ) {
          let response = await request.get("http://"+ip+"/status/"+status);
          console.log(response);
+         console.log(response.text);
        }
        let certain = await getResponse(ip, status)
 
