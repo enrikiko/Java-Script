@@ -4,27 +4,18 @@ const fs = require('fs');
 module.exports={
 
      switchStatus: async (ip, status) => {
-       console.log("IP:", ip)
-       console.log("STATUS:", status)
        console.log("http://"+ip+"/"+status);
-       function sendRes(val) {
-         console.log(val);
-         return val;
-       }
-       async function getResponse(ip, status) {
-         return await request("http://"+ip+"/"+status, (err, res, body) => {
-           if (err) {
-             sendRes(err)
-           } else if(res){
-             sendRes(res.body)
-           }
-         });
+       async function getResponse(ip, status, ) {
+         return await request.get("http://"+ip+"/status/"+status);
        }
        let certain = await getResponse(ip, status)
+       console.log(certain);
      },
+
     readLog: () => {
         return fs.readFileSync("log.txt", {encoding: 'ASCII'})
      },
+
     execute: (msg) => {
        console.log(msg)
        exec(msg, (err, stdout) => {
@@ -36,6 +27,7 @@ module.exports={
          }
        });
      },
+     
     log: (text) => {
        //io.emit('chat message', text);
        console.log(text);
