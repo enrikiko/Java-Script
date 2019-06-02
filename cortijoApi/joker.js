@@ -13,9 +13,9 @@ module.exports={
          return res;
        }
        function timeout(time) {
-         setTimeout( function(){ return null }, time)
+         return await setTimeout( function(){ return null }, time)
        }
-       timeout(5000);
+       return timeout(5000);
        return await getResponse(ip, status);
      },
 
