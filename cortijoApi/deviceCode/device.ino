@@ -10,9 +10,11 @@
 
 const char *ssid = "<ssid>";
 const char *password = "<password>";
-const string = "10.0.0.29:3000"
-String deviceName = "<deviceName>";
-int port = 8000;
+String deviceName = "Device-1";
+int port = 80;
+IPAddress ipDevice(10, 0, 0, 200);
+IPAddress gateway(10, 0, 0, 138);
+IPAddress subnet(255, 255, 255, 0);
 
 
 ESP8266WiFiMulti WiFiMulti;
@@ -25,6 +27,7 @@ void setup() {
 
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid, password);
+  WiFi.config(ipDevice, gateway, subnet);
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
@@ -49,8 +52,8 @@ void setup() {
     Serial.println("MDNS responder started");
   }
 
-  server.on("/on", handleRootOn);
-  server.on("/off", handleRootOff);
+  server.on("/true", handleRootOn);
+  server.on("/false", handleRootOff);
 
 //  server.on("/inline", []() {
 //    server.send(200, "text/plain", "this works as well");
@@ -84,7 +87,7 @@ void setIp(String ip){
       WiFiClient client;
       HTTPClient http;
       Serial.print("[HTTP] begin...\n");
-      if (http.begin(client, "http://"+serverIP+"/device/new/"+deviceName+"/status/"+ip+":"+port)) {
+      if (http.begin(client, "http://88.8.67.178:3371/new/"+deviceName+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
         // start connection and send HTTP header
         int httpCode = http.GET();

@@ -43,8 +43,8 @@ module.exports={
     },
     getStatus: (status) => {
       var status;
-      if (status == "on"){ status = true}
-      else if (status == "off"){status = false}
+      if (status == "true"){ status = true}
+      else if (status == "false"){status = false}
       else{ status = null }
       return status;
     }
