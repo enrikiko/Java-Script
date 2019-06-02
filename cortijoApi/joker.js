@@ -11,14 +11,16 @@ module.exports={
          console.log(val);
          return val;
        }
-       await request("http://"+ip+"/status/"+status, (err, res, body) => {
-          if (err) {
-             sendRes(err);
+       async function getResponse(ip, status) {
+         return await request("http://"+ip+"/"+status, (err, res, body) => {
+           if (err) {
+             sendRes(err)
            } else if(res){
              sendRes(res.body)
            }
-         }
-       );
+         });
+       }
+       let certain = await getResponse(ip, status)
      },
     readLog: () => {
         return fs.readFileSync("log.txt", {encoding: 'ASCII'})
