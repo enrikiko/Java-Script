@@ -1,0 +1,15 @@
+{
+  "name": "Script",
+  "version": "1.0.0",
+  "description": " Script",
+  "author": "Enrique Ramos <enrique.ramos@gemalto.com>",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node openDocker.js",
+    "test": "node Docker.js"
+  },
+  "dependencies": {
+    "node-run-cmd": "1.0.1"
+  }
+}
